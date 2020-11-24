@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>English is our life</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    @*<link rel="icon" type="image/png" href="~/login_assets/images/icons/favicon.ico" />*@
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login_assets/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login_assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login_assets/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login_assets/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login_assets/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login_assets/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/login_assets/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="~/login_assets/images/img-01.png" alt="IMG">
+                </div>
+                <form class="login100-form validate-form">
+                    <span class="login100-form-title">
+                        Login
+                    </span>
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <input class="input100" type="text" name="email" placeholder="Email">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <input class="input100" type="password" name="pass" placeholder="Password">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" id="login-btn">
+                            Login
+                        </button>
+                    </div>
+
+                    <div style=" padding-top: 4px;" class="container-login100-form-btn p-t-4">
+                        <div class="fb-login-button login100-form-btn" style="padding-top: 7px;background-color: #1877f2 !important;" data-width="" data-size="large"
+                             data-button-type="continue_with" data-auto-logout-link="false"
+                             data-use-continue-as="false" onlogin="checkLoginState()"></div>
+                    </div>
+
+                    <div class="text-center p-t-12">
+                        <span class="txt1">
+                            Forgot
+                        </span>
+                        <a class="txt2" href="#">
+                            Username / Password?
+                        </a>
+                    </div>
+
+                    <div class="text-center p-t-100">
+                        <a class="txt2" href="/register">
+                            Create your Account
+                            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--===============================================================================================-->
+    <script src="~/login_assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/login_assets/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/login_assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/login_assets/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/login_assets/vendor/tilt/tilt.jquery.min.js"></script>
+    <script>
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+
+        $('#login-facebook').click(function () {
+            checkLoginState();
+        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/login_assets/js/main.js"></script>
+
+
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '730145534583210',
+                cookie: true,
+                xfbml: true,
+                version: 'v6.0'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        function GetNameFB(id) {
+            FB.api(
+                '/' + id,
+                'GET',
+                { "fields": "id,name" },
+                function (response) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Login/LoginWithFacebook",
+                        data: {
+                            id: id + '',
+                            name: response.name + ''
+                        },
+                        success: function (data) {
+                            if (data.errorCode == 200) {
+                                if (response.newUser == 0)
+                                    location.replace('/login/facebook');
+                                else
+                                    location.replace('/home');
+                            }
+                            else {
+                                alert(data.message)
+                            }
+                        }
+                    });
+                }
+            );
+        };
+
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                console.log(response);
+                //statusChangeCallback(response);
+                GetNameFB(response.authResponse.userID);
+            });
+        }
+    </script>
+
+</body>
+</html>
