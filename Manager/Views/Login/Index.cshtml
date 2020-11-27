@@ -29,8 +29,8 @@
                     <img src="~/login_assets/images/img-01.png" alt="IMG">
                 </div>
                 <form class="login100-form validate-form">
-                    <span class="login100-form-title">
-                        Login
+                    <span class="login100-form-title-fb">
+                        English is our life <br/> <span style="font-size: 22px; color: #57b846;">Join now!!!</span>
                     </span>
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                         <input class="input100" type="text" name="email" placeholder="Email">
@@ -54,7 +54,7 @@
                         </button>
                     </div>
 
-                    <div style=" padding-top: 4px;" class="container-login100-form-btn p-t-4">
+                    <div style=" padding-top: 4px; text-align: center;" class="container-login100-form-btn p-t-4">
                         <div class="fb-login-button login100-form-btn" style="padding-top: 7px;background-color: #1877f2 !important;" data-width="" data-size="large"
                              data-button-type="continue_with" data-auto-logout-link="false"
                              data-use-continue-as="false" onlogin="checkLoginState()"></div>
@@ -84,7 +84,8 @@
 
 
     <!--===============================================================================================-->
-    <script src="~/login_assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+    @*<script src="~/login_assets/vendor/jquery/jquery-3.2.1.min.js"></script>*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--===============================================================================================-->
     <script src="~/login_assets/vendor/bootstrap/js/popper.js"></script>
     <script src="~/login_assets/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -107,6 +108,7 @@
 
 
     <script>
+        rootUrl = '@Url.Content("~")';
         window.fbAsyncInit = function () {
             FB.init({
                 appId: '730145534583210',
@@ -134,15 +136,18 @@
                 { "fields": "id,name" },
                 function (response) {
                     $.ajax({
+                        url: '@Url.Action("LoginWithFacebook","Login")',
                         type: "POST",
-                        url: "/Login/LoginWithFacebook",
+                        async: false,
+                        dataType: 'json',
+                        cache: false,
                         data: {
                             id: id + '',
                             name: response.name + ''
                         },
                         success: function (data) {
                             if (data.errorCode == 200) {
-                                if (response.newUser == 0)
+                                if (data.newUser == 1 || data.newUser == 2)
                                     location.replace('/login/facebook');
                                 else
                                     location.replace('/home');

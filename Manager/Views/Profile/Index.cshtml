@@ -1,13 +1,46 @@
-﻿
+﻿@model Manager.Models.TableModel.user
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<h3 id="_id">@Model.id</h3>
 <div class="panel-header panel-header-sm">
 </div>
 <div class="content">
     <div class="row">
+        <div class="col-md-4">
+            <div class="card card-user">
+                <div class="image">
+                    <img style="opacity: 70%;" src="//graph.facebook.com/@ViewBag.IdFacebook/picture?type=large&width=900&height=900" alt="...">
+                </div>
+                <div class="card-body">
+                    <div class="author">
+                        <a href="#">
+                            <img class="avatar border-gray" src="//graph.facebook.com/@ViewBag.IdFacebook/picture?type=large&width=900&height=900" alt="...">
+                            <h5 class="title">@ViewBag.NameFacebook</h5>
+                        </a>
+                        <p id="show-mail" class="description">
+                            @Model.email
+                        </p>
+                    </div>
+                    <p id="show-details" class="description text-center">
+                        @Model.details
+                    </p>
+                </div>
+                <hr>
+                <div class="button-container">
+                    <a id="show-facebook" href="@Model.facebook" class="btn btn-neutral btn-icon btn-round btn-lg">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a id="show-twitter" href="@Model.twitter" class="btn btn-neutral btn-icon btn-round btn-lg">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a id="show-instagram" href="@Model.instagram" class="btn btn-neutral btn-icon btn-round btn-lg">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
@@ -18,62 +51,48 @@
                         <div class="row">
                             <div class="col-md-5 pr-1">
                                 <div class="form-group">
-                                    <label>Company (disabled)</label>
-                                    <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
+                                    <label>Full name (disabled)</label>
+                                    <input type="text" class="form-control" disabled="" placeholder="your name" value="@ViewBag.NameFacebook">
                                 </div>
                             </div>
                             <div class="col-md-3 px-1">
                                 <div class="form-group">
                                     <label>Username</label>
-                                    <input type="text" class="form-control" placeholder="Username" value="michael23">
+                                    <input id="username" type="text" class="form-control" placeholder="Username" value="">
                                 </div>
                             </div>
                             <div class="col-md-4 pl-1">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" placeholder="Email">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 pr-1">
-                                <div class="form-group">
-                                    <label>First Name</label>
-                                    <input type="text" class="form-control" placeholder="Company" value="Mike">
-                                </div>
-                            </div>
-                            <div class="col-md-6 pl-1">
-                                <div class="form-group">
-                                    <label>Last Name</label>
-                                    <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                                    <label for="exampleInputEmail1">Password</label>
+                                    <input id="password" type="password" class="form-control" placeholder="Password">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Address</label>
-                                    <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                    <label>Email</label>
+                                    <input id="email" type="email" class="form-control" placeholder="your email" value="@Model.email">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4 pr-1">
                                 <div class="form-group">
-                                    <label>City</label>
-                                    <input type="text" class="form-control" placeholder="City" value="Mike">
+                                    <label>Facebook link</label>
+                                    <input id="facebook" type="text" class="form-control" placeholder="your facebook link" value="@Model.facebook">
                                 </div>
                             </div>
                             <div class="col-md-4 px-1">
                                 <div class="form-group">
-                                    <label>Country</label>
-                                    <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                                    <label>Twitter link</label>
+                                    <input id="twitter" type="text" class="form-control" placeholder="your twitter link" value="@Model.twitter">
                                 </div>
                             </div>
                             <div class="col-md-4 pl-1">
                                 <div class="form-group">
-                                    <label>Postal Code</label>
-                                    <input type="number" class="form-control" placeholder="ZIP Code">
+                                    <label>Instagram link</label>
+                                    <input id="instagram" type="text" class="form-control" placeholder="your instagram link" value="@Model.instagram">
                                 </div>
                             </div>
                         </div>
@@ -81,46 +100,16 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>About Me</label>
-                                    <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                    <textarea id="details" spellcheck="false" rows="4" cols="80" class="form-control" placeholder="Write something...">@Model.details</textarea>
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div style="text-align: right;" class="col-md-12">
+                                <button type="button" class="btn btn-primary" id="btn-update-user">Update</button>
+                            </div>
+                        </div>
                     </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-user">
-                <div class="image">
-                    <img src="../assets/img/bg5.jpg" alt="...">
-                </div>
-                <div class="card-body">
-                    <div class="author">
-                        <a href="#">
-                            <img class="avatar border-gray" src="../assets/img/mike.jpg" alt="...">
-                            <h5 class="title">Mike Andrew</h5>
-                        </a>
-                        <p class="description">
-                            michael24
-                        </p>
-                    </div>
-                    <p class="description text-center">
-                        "Lamborghini Mercy <br>
-                        Your chick she so thirsty <br>
-                        I'm in that two seat Lambo"
-                    </p>
-                </div>
-                <hr>
-                <div class="button-container">
-                    <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                        <i class="fab fa-facebook-f"></i>
-                    </button>
-                    <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                        <i class="fab fa-twitter"></i>
-                    </button>
-                    <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                        <i class="fab fa-google-plus-g"></i>
-                    </button>
                 </div>
             </div>
         </div>
@@ -128,3 +117,49 @@
 </div>
 
 
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#btn-update-user').click(function () {
+                var id = $('#_id').html();
+                var username = $('#username').val();
+                var password = $('#password').val();
+                var email = $('#email').val();
+                var facebook = $('#facebook').val();
+                var twitter = $('#twitter').val();
+                var instagram = $('#instagram').val();
+                var details = $('#details').val();
+                $.ajax({
+                    url: '/Profile/UpdateUser',
+                    type: "POST",
+                    data: {
+                        id: id,
+                        user_name: username,
+                        password: password,
+                        email: email,
+                        facebook: facebook,
+                        twitter: twitter,
+                        instagram: instagram,
+                        details: details
+                    },
+                    success: function (data) {
+                        if (data.errorCode == 200) {
+                            $('#show-mail').html(email);
+                            $('#show-details').html(details);
+                            $('#show-facebook').attr("href", facebook);
+                            $('#show-twitter').attr("href", twitter);
+                            $('#show-instagram').attr("href", instagram);
+                        }
+                        else {
+                            alert(data.message);
+                        }
+                    },
+                    error: function () {
+                        alert('error');
+                    }
+                });
+            });
+        });
+    </script>
+}

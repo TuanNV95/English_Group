@@ -1,10 +1,12 @@
-﻿using Manager.Connection;
+﻿using Manager.Common;
+using Manager.Connection;
 using Manager.Helper;
 using Manager.Models.TableModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using SqlKata.Execution;
+using System;
 
 namespace Manager.Controllers
 {
@@ -21,48 +23,93 @@ namespace Manager.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("Login/LoginWithFacebook")]
         public ActionResult LoginWithFacebook(string id, string name)
         {
-            var new_user = 0;
-            var query_data = _queryBuilder.Query(ConstantsDatabase.TABLE_USERS)
-                .Where(ConstantsDatabase.USERS_ID_FACEBOOK, id);
-            var insert_status = 1;
-            if (query_data.Clone().AsCount().First<int>() <= 0)
+            try
             {
-                insert_status = _queryBuilder.Query(ConstantsDatabase.TABLE_USERS)
-                    .InsertGetId<int>(new
-                    {
-                        id_facebook = id,
-                        user_name = name
-                    });
-            }
-            else
-            {
-                new_user = 1;
-            }
-            if (insert_status > 0)
-            {
-                HttpContext.Session.SetString("IdFacebook", id);
+                var new_user = 0;
+                var query_data = _queryBuilder.Query(ConstantsDatabase.TABLE_USERS)
+                    .Where(ConstantsDatabase.USERS_ID_FACEBOOK, id);
+                var insert_status = 1;
+                if (query_data.Clone().AsCount().First<int>() <= 0)
+                {
+                    insert_status = _queryBuilder.Query(ConstantsDatabase.TABLE_USERS)
+                        .InsertGetId<int>(new
+                        {
+                            id_facebook = id,
+                            full_name = name,
+                            actived = 0
+                        });
+                }
                 var user_selected = query_data.Clone().FirstOrDefault<user>();
-                return Json(new { ErrorCode = 200, Message = "success!", NewUser = new_user, DataUser = user_selected });
+                if (String.IsNullOrEmpty(user_selected.email))
+                {
+                    new_user = 1;
+                }
+                if (insert_status > 0)
+                {
+                    HttpContext.Session.SetString(Constants.ID_FACEBOOK, id);
+                    HttpContext.Session.SetString(Constants.NAME_FACEBOOK, name);
+                    HttpContext.Session.SetString(Constants.MENU_ACTIVE, Constants.HOME);
+                    if (user_selected.actived == 100)
+                        HttpContext.Session.SetString(Constants.ROLE, Constants.ADMIN);
+                    else if (user_selected.actived == 0)
+                    {
+                        new_user = 2;
+                        HttpContext.Session.SetString(Constants.ROLE, Constants.NEW);
+                    }
+                    return Json(new { ErrorCode = 200, Message = "success!", NewUser = new_user });
+                }
+                return Json(new { ErrorCode = 400, Message = "error!" });
             }
-            return Json(new { ErrorCode = 400, Message = "error!" });
+            catch (Exception ex)
+            {
+                return Json(new { ErrorCode = 400, Message = ex.Message });
+            }
         }
 
         public IActionResult Facebook()
         {
-            ViewBag.IdFacebook = HttpContext.Session.GetString("IdFacebook");
+            ViewBag.IdFacebook = HttpContext.Session.GetString(Constants.ID_FACEBOOK);
+            ViewBag.NameFacebook = HttpContext.Session.GetString(Constants.NAME_FACEBOOK);
+            ViewBag.Role = HttpContext.Session.GetString(Constants.ROLE);
             return View();
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         [HttpPost]
         public ActionResult ContinueWithFacebook(string email, string id_facebook)
         {
+            if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(id_facebook))
+            {
+                return Json(new { ErrorCode = 404, Message = "error!" });
+            }
+            if (!IsValidEmail(email))
+            {
+                return Json(new { ErrorCode = 405, Message = "error!" });
+            }
             var query_data = _queryBuilder.Query(ConstantsDatabase.TABLE_USERS)
                 .Where(ConstantsDatabase.USERS_ID_FACEBOOK, id_facebook);
-            if (query_data.Clone().AsCount().First<int>() > 0)
+            var user_selected = query_data.Clone().FirstOrDefault<user>();
+            if (!(user_selected is null))
             {
+                if (!String.IsNullOrEmpty(user_selected.email))
+                {
+                    return Json(new { ErrorCode = 406, Message = "error!" });
+                }
                 var update_status = query_data.Clone()
                     .Update(new
                     {
@@ -70,7 +117,6 @@ namespace Manager.Controllers
                     });
                 if (update_status > 0)
                 {
-                    var user_selected = query_data.Clone().FirstOrDefault<user>();
                     return Json(new { ErrorCode = 200, Message = "success!", DataUser = user_selected });
                 }
             }

@@ -14,5 +14,9 @@
         //public byte[] cover_photo { get; set; }
         public string email { get; set; }
         public string phone { get; set; }
+        public string details { get; set; }
+        public string facebook { get; set; }
+        public string instagram { get; set; }
+        public string twitter { get; set; }
     }
 }

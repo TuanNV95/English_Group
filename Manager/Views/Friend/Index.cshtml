@@ -12,73 +12,129 @@
             <div class="card card-upgrade">
                 <div class="card-header text-center">
                     <h4 class="card-title">
-                        Now UI Dashboard PRO</h3>
-                        <p class="card-category">Are you looking for more components? Please check our Premium Version of Now UI Dashboard PRO.</p>
+                        List all friends
+                    </h4>
+                    <p class="card-category">All system users become friends and you can view their information here.</p>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive table-upgrade">
-                        <table class="table">
-                            <thead>
-                            <th></th>
-                            <th class="text-center">Free</th>
-                            <th class="text-center">PRO</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Components</td>
-                                    <td class="text-center">16</td>
-                                    <td class="text-center">160</td>
-                                </tr>
-                                <tr>
-                                    <td>Plugins</td>
-                                    <td class="text-center">4</td>
-                                    <td class="text-center">13</td>
-                                </tr>
-                                <tr>
-                                    <td>Example Pages</td>
-                                    <td class="text-center">7</td>
-                                    <td class="text-center">27</td>
-                                </tr>
-                                <tr>
-                                    <td>Login, Register, Pricing, Lock Pages</td>
-                                    <td class="text-center"><i class="now-ui-icons ui-1_simple-remove text-danger"></i></td>
-                                    <td class="text-center"><i class="now-ui-icons ui-1_check text-success"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>DataTables, VectorMap, SweetAlert, Wizard, jQueryValidation, FullCalendar etc...</td>
-                                    <td class="text-center"><i class="now-ui-icons ui-1_simple-remove text-danger"></i></td>
-                                    <td class="text-center"><i class="now-ui-icons ui-1_check text-success"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>Mini Sidebar</td>
-                                    <td class="text-center"><i class="now-ui-icons ui-1_simple-remove text-danger"></i></td>
-                                    <td class="text-center"><i class="now-ui-icons ui-1_check text-success"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>Premium Support</td>
-                                    <td class="text-center"><i class="now-ui-icons ui-1_simple-remove text-danger"></i></td>
-                                    <td class="text-center"><i class="now-ui-icons ui-1_check text-success"></i></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td class="text-center">Free</td>
-                                    <td class="text-center">Just $49</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center"></td>
-                                    <td class="text-center">
-                                        <a href="#" class="btn btn-round btn-default disabled">Current Version</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a target="_blank" href="https://www.creative-tim.com/product/now-ui-dashboard-pro?ref=nud-free-upgrade-live" class="btn btn-round btn-primary">Upgrade to PRO</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="table-responsive table-upgrade" id="table-list-friends">
+                    </div>
+                </div>
+                <div class="card-footer ">
+                    <hr>
+                    <div class="stats">
+                        <a href="#" id="update-friend-list"><i class="now-ui-icons loader_refresh spin"></i> Updated now!</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="details-user-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>*@
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-user">
+                            <div class="image">
+                                <img id="img-cover" style="opacity: 70%;" src="" alt="...">
+                            </div>
+                            <div class="card-body">
+                                <div class="author">
+                                    <a href="#">
+                                        <img id="img-avatar" class="avatar border-gray" src="" alt="...">
+                                        <h5 class="title" id="full-name"></h5>
+                                    </a>
+                                    <p id="email" class="description">
+                                        
+                                    </p>
+                                </div>
+                                <p id="details" class="description text-center"></p>
+                            </div>
+                            <hr>
+                            <div class="button-container">
+                                <a href=""  target="_blank" class="btn btn-neutral btn-icon btn-round btn-lg" id="facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href=""  target="_blank" class="btn btn-neutral btn-icon btn-round btn-lg" id="twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href=""  target="_blank" class="btn btn-neutral btn-icon btn-round btn-lg" id="instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btn-delete-user"></button>
+            </div>*@
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            var id_selected = null;
+            function getListFriend() {
+                $.ajax({
+                    url: '/Friend/ListFriend',
+                    type: "GET",
+                    data: null,
+                    success: function (data) {
+                        $("#table-list-friends").html(data);
+                        $('.btn-details-friend').click(function () {
+                            id_selected = $(this).closest('tr').attr('id');
+                            getDetailsUser();
+                            $('#details-user-modal').modal('show');
+                        });
+                    },
+                    error: function () {
+                        alert('error');
+                    }
+                });
+            };
+            getListFriend();
+            $('#update-friend-list').click(function () {
+                getListFriend();
+            });
+
+            function getDetailsUser() {
+                $.ajax({
+                    url: '/Friend/DetailsUser',
+                    type: "GET",
+                    data: { id: id_selected},
+                    success: function (response) {
+                        if (response.errorCode == 200) {
+                            $('#img-cover').attr("src", "//graph.facebook.com/" + response.data.id_facebook + "/picture?type=large&width=900&height=900");
+                            $('#img-avatar').attr("src", "//graph.facebook.com/" + response.data.id_facebook + "/picture?type=large&width=900&height=900");
+                            $('#full-name').html(response.data.full_name);
+                            $('#email').html(response.data.email);
+                            $('#details').html(response.data.details);
+                            $('#facebook').attr("href", response.data.facebook);
+                            $('#twitter').attr("href", response.data.twitter);
+                            $('#instagram').attr("href", response.data.instagram);
+                        }
+                    },
+                    error: function () {
+                        alert('error');
+                    }
+                });
+            }
+        });
+    </script>
+}
 

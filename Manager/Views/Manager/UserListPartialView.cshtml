@@ -1,0 +1,58 @@
+﻿@model List<Manager.Models.TableModel.user>
+<table class="table">
+    <tbody>
+        <tr style="font-weight: bold">
+            <td style="height: 40px;">
+                Selected
+            </td>
+            <td class="text-left">Facebook Id</td>
+            <td class="text-left">Username</td>
+            <td class="text-left">Full name</td>
+            <td class="text-left">Email address</td>
+            <td class="text-left">Phone number</td>
+            <td class="text-left">Role</td>
+            <td class="text-left">Status</td>
+            <td class="td-actions text-right"></td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr id="@item.id">
+                <td>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox">
+                            <span class="form-check-sign"></span>
+                        </label>
+                    </div>
+                </td>
+                <td class="text-left">@(item.id_facebook ?? "")</td>
+                <td class="text-left">@(item.user_name ?? "")</td>
+                <td class="text-left">@(item.full_name ?? "")</td>
+                <td class="text-left">@(item.email ?? "")</td>
+                <td class="text-left">@(item.phone ?? "")</td>
+                <td class="text-left"><p>@(item.actived == 100 ? "Admin": (item.actived == 0 ? "New" : "User"))</p></td>
+                @if (item.actived == 0)
+                {
+
+                    <td class="text-left" style="padding-top:10px;"><p class="disable-tag">Disabled</p></td>
+                }
+                else if (item.actived == 1 || item.actived == 100)
+                {
+
+                    <td class="text-left" style="padding-top:10px;"><p class="active-tag">Actived</p></td>
+                }
+                <td class="td-actions text-right">
+                    @if (item.actived == 0)
+                    {
+                        <button type="button"class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral active-user">
+                            <i class="now-ui-icons ui-2_settings-90"></i>
+                        </button>
+                    }
+                    <button type="button" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral delete-user">
+                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

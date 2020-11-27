@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel-header panel-header-sm">
+</div>
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card  card-tasks">
+                <div class="card-header ">
+                    <h5 class="card-category">Setting system user</h5>
+                    <h4 class="card-title">User list</h4>
+                </div>
+                <div class="card-body ">
+                    <div class="table-full-width table-responsive" id="table-lst-user"></div>
+                </div>
+                <div class="card-footer ">
+                    <hr>
+                    <div class="stats">
+                        <a href="#" id="update-user-list"><i class="now-ui-icons loader_refresh spin"></i> Updated now!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="delete-user-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete confirm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div style="text-align: center;" class="col-md-12">
+                        <h5 id="content-delete"></h5>
+                    </div>
+                </div>
+                <div class="row">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btn-delete-user"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            var type = null;
+            var id_selected = null;
+            function loadUser() {
+                $.ajax({
+                    url: '/Manager/ListUser',
+                    type: "GET",
+                    data: null,
+                    success: function (data) {
+                        //$("#table-lst-user").html("");
+                        $("#table-lst-user").html(data);
+                        $('.delete-user').click(function () {
+                            type = 'delete';
+                            id_selected = $(this).closest('tr').attr('id');
+                            $('#btn-delete-user').text('Delete');
+                            $('#content-delete').html("Are you sure?");
+                            $('#delete-user-modal').modal('show');
+                        });
+                        $('.active-user').click(function () {
+                            type = 'active';
+                            id_selected = $(this).closest('tr').attr('id');
+                            $('#btn-delete-user').text('Active');
+                            $('#content-delete').html("Active user?");
+                            $('#delete-user-modal').modal('show');
+                        });
+                    },
+                    error: function () {
+                        alert('error');
+                    }
+                });
+            };
+            loadUser();
+            $('#update-user-list').click(function () {
+                loadUser();
+            });
+            $('#btn-delete-user').click(function () {
+                var url = '';
+                if (type == 'delete') {
+                    url = '/Manager/DeleteUser';
+                }
+                else if (type == 'active')
+                {
+                    url = '/Manager/ActiveUser';
+                }
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    dataType: 'json',
+                    data: { id: id_selected },
+                    success: function (data) {
+                        $('#delete-user-modal').modal('hide');
+                        loadUser();
+                    },
+                    error: function () {
+                        $('#delete-user-modal').modal('hide');
+                        alert('error!');
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+
+

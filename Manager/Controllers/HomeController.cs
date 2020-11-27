@@ -1,24 +1,27 @@
-﻿using Manager.Connection;
+﻿using Manager.Common;
+using Manager.Connection;
 using Manager.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 
 namespace Manager.Controllers
 {
+    //[Authorize]
     public class HomeController : _DbExcute
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger) : base()
         {
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            var id_facebook = HttpContext.Session.GetString("IdFacebook");
+            ViewBag.Session = HttpContext.Session.GetString(Constants.MENU_ACTIVE);
+            ViewBag.Role = HttpContext.Session.GetString(Constants.ROLE);
+            ViewBag.NameFacebook = HttpContext.Session.GetString(Constants.NAME_FACEBOOK);
             return View();
         }
 
@@ -26,30 +29,33 @@ namespace Manager.Controllers
         public ActionResult SelectMenu(string id)
         {
             var action = id;
-            switch(id)
+            switch (id)
             {
                 case "home":
-                    SesionHelper.menu_active = 1;
+                    HttpContext.Session.SetString(Constants.MENU_ACTIVE, Constants.HOME);
                     break;
                 case "spin":
-                    SesionHelper.menu_active = 2;
+                    HttpContext.Session.SetString(Constants.MENU_ACTIVE, Constants.SPIN);
                     break;
                 case "punish":
-                    SesionHelper.menu_active = 3;
+                    HttpContext.Session.SetString(Constants.MENU_ACTIVE, Constants.PUNISH);
                     break;
                 case "notification":
-                    SesionHelper.menu_active = 4;
+                    HttpContext.Session.SetString(Constants.MENU_ACTIVE, Constants.NOTIFICATION);
                     break;
                 case "profile":
                 case "_profile":
                     action = "profile";
-                    SesionHelper.menu_active = 5;
+                    HttpContext.Session.SetString(Constants.MENU_ACTIVE, Constants.PROFILE);
                     break;
                 case "friend":
-                    SesionHelper.menu_active = 6;
+                    HttpContext.Session.SetString(Constants.MENU_ACTIVE, Constants.FRIEND);
                     break;
                 case "setting":
-                    SesionHelper.menu_active = 7;
+                    HttpContext.Session.SetString(Constants.MENU_ACTIVE, Constants.SETTING);
+                    break;
+                case "manager":
+                    HttpContext.Session.SetString(Constants.MENU_ACTIVE, Constants.MANAGER_ADMIN);
                     break;
                 default:
                     action = null;

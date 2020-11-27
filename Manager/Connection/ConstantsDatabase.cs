@@ -21,6 +21,10 @@
         public const string USERS_COVER_PHOTO = "cover_photo";
         public const string USERS_EMAIL = "email";
         public const string USERS_PHONE = "phone";
+        public const string USERS_details = "details";
+        public const string USERS_FACEBOOK = "facebook";
+        public const string USERS_INSTAGRAM = "instagram";
+        public const string USERS_TWITTER = "twitter";
 
         // Columns in USER_TASKS tables
         public const string USER_TASKS_user_id = "user_id";
