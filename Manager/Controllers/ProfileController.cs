@@ -1,5 +1,6 @@
 ﻿using Manager.Common;
 using Manager.Connection;
+using Manager.Helper;
 using Manager.Models.TableModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,10 @@ namespace Manager.Controllers
     {
         public IActionResult Index()
         {
+            // TODO: Dùng tạm do chưa có chức năng login
+            if (HttpContext.Session is null || String.IsNullOrEmpty(HttpContext.Session.GetString(Constants.ID_FACEBOOK)))
+                return SesionHelper.CheckLogin();
+
             var your_id_fb = HttpContext.Session.GetString(Constants.ID_FACEBOOK);
             ViewBag.Session = HttpContext.Session.GetString(Constants.MENU_ACTIVE);
             ViewBag.Role = HttpContext.Session.GetString(Constants.ROLE);

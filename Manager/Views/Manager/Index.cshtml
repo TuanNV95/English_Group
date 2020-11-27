@@ -35,7 +35,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Delete confirm</h5>
+                <h5 class="modal-title" id="modal-title">Delete confirm</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -70,12 +70,12 @@
                     type: "GET",
                     data: null,
                     success: function (data) {
-                        //$("#table-lst-user").html("");
                         $("#table-lst-user").html(data);
                         $('.delete-user').click(function () {
                             type = 'delete';
                             id_selected = $(this).closest('tr').attr('id');
                             $('#btn-delete-user').text('Delete');
+                            $('#modal-title').html("Delete confirm");
                             $('#content-delete').html("Are you sure?");
                             $('#delete-user-modal').modal('show');
                         });
@@ -83,6 +83,7 @@
                             type = 'active';
                             id_selected = $(this).closest('tr').attr('id');
                             $('#btn-delete-user').text('Active');
+                            $('#modal-title').html("Active confirm");
                             $('#content-delete').html("Active user?");
                             $('#delete-user-modal').modal('show');
                         });
