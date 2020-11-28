@@ -16,6 +16,11 @@
 }
 
 @font-face {
+    font-family: Svn-Aptima;
+    src: url('../fonts/SVN-Aptima.ttf');
+}
+
+@font-face {
     font-family: Poppins-Bold;
     src: url('../fonts/poppins/Poppins-Bold.ttf');
 }
@@ -32,6 +37,10 @@
 
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
+
+.text-utf8 {
+    font-family: Svn-Aptima !important;
+}
 
 * {
     margin: 0px;

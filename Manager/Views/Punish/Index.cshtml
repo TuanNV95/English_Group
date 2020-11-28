@@ -3,20 +3,131 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="panel-header panel-header-sm">
+<div class="panel-header">
+    <div class="header text-center">
+        <h2 class="title">Cổ đông phạt</h2>
+        <p class="category text-transform">Hãy lười làm bài tập để trở thành cổ đông lớn của danh mục này!</p>
+    </div>
 </div>
 <div class="content">
+    <div style="margin-bottom: 100px;" class="row" id="title_top">
+
+    </div>
     <div class="row">
-        <div class="col-md-12">
-            <div class="card ">
-                <div class="card-header ">
-                    Module developing...
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title" style="font-weight:bold">Cổ đông hiện tại</h4>
                 </div>
-                @*<div class="card-body ">
-                    <div id="map" class="map"></div>
-                </div>*@
+                <div class="card-body">
+                    <div class="table-responsive" id="table-log">
+
+                    </div>
+                    <div class="card-footer ">
+                        <hr>
+                        <div class="stats">
+                            <a href="#" id="update-table-log"><i class="now-ui-icons loader_refresh spin"></i> Cập nhật lại!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title" style="font-weight:bold">Lịch sử tích điểm tháng này</h4>
+                </div>
+                <div class="card-body">
+
+                    <div class="table-responsive" id="table-log-his">
+
+                    </div>
+                    <div class="card-footer ">
+                        <hr>
+                        <div class="stats">
+                            <a href="#" id="update-table-log-his"><i class="now-ui-icons loader_refresh spin"></i> Cập nhật lại!</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .top-icon {
+        text-align: center;
+    }
+
+    .top2-3 {
+        padding-top: 50px;
+    }
+
+    .avatar-top {
+        width: 50% !important;
+    }
+</style>
+
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            function getToppunish() {
+                $.ajax({
+                    url: '/Punish/GetDataTopPunish',
+                    type: "GET",
+                    data: null,
+                    success: function (data) {
+                        $('#title_top').html(data);
+                    },
+                    error: function () {
+                        alert('error!');
+                    }
+                });
+            };
+
+            function getDataPunish() {
+                $.ajax({
+                    url: '/Punish/GetDataPunish',
+                    type: "GET",
+                    data: null,
+                    success: function (data) {
+                        $('#table-log').html(data);
+                    },
+                    error: function () {
+                        alert('error!');
+                    }
+                });
+            };
+
+            function getDataPunishHistory() {
+                $.ajax({
+                    url: '/Punish/GetDataPunishHistory',
+                    type: "GET",
+                    data: null,
+                    success: function (data) {
+                        $('#table-log-his').html(data);
+                    },
+                    error: function () {
+                        alert('error!');
+                    }
+                });
+            };
+            getToppunish();
+            getDataPunish();
+            getDataPunishHistory();
+            $('#update-table-log').click(function () {
+                getToppunish();
+                getDataPunish();
+            });
+            $('#update-table-log-his').click(function () {
+                getToppunish();
+                getDataPunishHistory();
+            });
+
+        });
+    </script>
+}
+
 

@@ -4,7 +4,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="panel-header panel-header-sm">
+<div class="panel-header">
+    <div class="header text-center">
+        <h2 class="title">Danh sách bạn bè</h2>
+        <p class="category text-transform">
+            Tất cả người dùng hệ thống đều trở thành bạn bè của nhau.<br /> 
+            Bạn có thể xem thông tin chi tiết của họ tại đây.
+        </p>
+    </div>
 </div>
 <div class="content">
     <div class="row">
@@ -12,9 +19,9 @@
             <div class="card card-upgrade">
                 <div class="card-header text-center">
                     <h4 class="card-title">
-                        List all friends
+                        
                     </h4>
-                    <p class="card-category">All system users become friends and you can view their information here.</p>
+                    <p class="card-category text-transform"></p>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive table-upgrade" id="table-list-friends">
@@ -23,7 +30,7 @@
                 <div class="card-footer ">
                     <hr>
                     <div class="stats">
-                        <a href="#" id="update-friend-list"><i class="now-ui-icons loader_refresh spin"></i> Updated now!</a>
+                        <a href="#" id="update-friend-list"><i class="now-ui-icons loader_refresh spin"></i> Cập nhật lại!</a>
                     </div>
                 </div>
             </div>
@@ -119,14 +126,26 @@
                     data: { id: id_selected},
                     success: function (response) {
                         if (response.errorCode == 200) {
-                            $('#img-cover').attr("src", "//graph.facebook.com/" + response.data.id_facebook + "/picture?type=large&width=900&height=900");
-                            $('#img-avatar').attr("src", "//graph.facebook.com/" + response.data.id_facebook + "/picture?type=large&width=900&height=900");
+                            if (response.data.id_facebook == "1") {
+                                $('#img-cover').attr("src", "https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg");
+                                $('#img-avatar').attr("src", "https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg");
+
+                                $('#details').html('Đây là tài khoản giả - người dùng này chưa tạo tài khoản trên hệ thống');
+                                $('#email').html('');
+                                $('#facebook').attr("href", '');
+                                $('#twitter').attr("href", '');
+                                $('#instagram').attr("href", '');
+                            }
+                            else {
+                                $('#email').html(response.data.email);
+                                $('#facebook').attr("href", response.data.facebook);
+                                $('#twitter').attr("href", response.data.twitter);
+                                $('#instagram').attr("href", response.data.instagram);
+                                $('#details').html(response.data.details);
+                                $('#img-cover').attr("src", "//graph.facebook.com/" + response.data.id_facebook + "/picture?type=large&width=900&height=900");
+                                $('#img-avatar').attr("src", "//graph.facebook.com/" + response.data.id_facebook + "/picture?type=large&width=900&height=900");
+                            }
                             $('#full-name').html(response.data.full_name);
-                            $('#email').html(response.data.email);
-                            $('#details').html(response.data.details);
-                            $('#facebook').attr("href", response.data.facebook);
-                            $('#twitter').attr("href", response.data.twitter);
-                            $('#instagram').attr("href", response.data.instagram);
                         }
                     },
                     error: function () {

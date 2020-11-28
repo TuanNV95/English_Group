@@ -1926,7 +1926,7 @@ p.description {
 .footer-big p,
 .card .footer .stats {
     color: #9A9A9A;
-    font-weight: 300;
+    font-weight: 500;
 }
 
 .category,
@@ -6008,4 +6008,24 @@ Created using IcoMoon - icomoon.io
     padding: 5px;
     text-align: center;
     width: 72px !important;
+}
+
+
+/*@media only screen and (min-device-width : 770px) {
+    #title_top {
+        display: none;
+    }
+}*/
+@media screen and (max-width: 768px) {
+
+    #title_top {
+        display: none;
+    }
+    #hide-mobile{
+        display: none;
+    }
+}
+
+.text-transform {
+    text-transform: none !important;
 }

@@ -5,12 +5,12 @@
     <canvas id="bigDashboardChart"></canvas>
 </div>
 <div class="content">
-    <div class="row">
+    <div class="row" hidden>
         <div class="col-lg-4">
             <div class="card card-chart">
                 <div class="card-header">
-                    <h5 class="card-category">Punishment statistics</h5>
-                    <h4 class="card-title">Month</h4>
+                    <h5 class="card-category">Thống kê phạt</h5>
+                    <h4 class="card-title">Tháng</h4>
                 </div>
                 <div class="card-body">
                     <div class="chart-area">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="stats">
-                        <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
+                        <i class="now-ui-icons arrows-1_refresh-69"></i> Cập nhật lại!
                     </div>
                 </div>
             </div>
@@ -27,8 +27,8 @@
         <div class="col-lg-4 col-md-6">
             <div class="card card-chart">
                 <div class="card-header">
-                    <h5 class="card-category">Punishment statistics</h5>
-                    <h4 class="card-title">Week</h4>
+                    <h5 class="card-category">Thống kê phạt</h5>
+                    <h4 class="card-title">Tuần</h4>
                 </div>
                 <div class="card-body">
                     <div class="chart-area">
@@ -37,7 +37,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="stats">
-                        <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
+                        <i class="now-ui-icons arrows-1_refresh-69"></i> Cập nhật lại!
                     </div>
                 </div>
             </div>
@@ -45,8 +45,8 @@
         <div class="col-lg-4 col-md-6">
             <div class="card card-chart">
                 <div class="card-header">
-                    <h5 class="card-category">Punishment statistics</h5>
-                    <h4 class="card-title">Yesterday</h4>
+                    <h5 class="card-category">Thống kê phạt</h5>
+                    <h4 class="card-title">Hôm qua</h4>
                 </div>
                 <div class="card-body">
                     <div class="chart-area">
@@ -55,7 +55,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="stats">
-                        <i class="now-ui-icons ui-2_time-alarm"></i> Last 7 days
+                        <i class="now-ui-icons ui-2_time-alarm"></i> Cập nhật lại!
                     </div>
                 </div>
             </div>
@@ -65,234 +65,157 @@
         <div class="col-md-6">
             <div class="card  card-tasks">
                 <div class="card-header ">
-                    <h5 class="card-category">Daily challenges and Topic</h5>
-                    <h4 class="card-title">Tasks</h4>
+                    <h5 class="card-category">Thử thách hằng ngày và Chủ đề tuần</h5>
+                    <h4 class="card-title">Nhiệm vụ</h4>
                 </div>
                 <div class="card-body ">
-                    <div class="table-full-width table-responsive">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" checked>
-                                                <span class="form-check-sign"></span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td class="text-left">Tài</td>
-                                    <td class="text-left">Daily challenges on tuesday</td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                                            <i class="now-ui-icons ui-2_settings-90"></i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" checked>
-                                                <span class="form-check-sign"></span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td class="text-left">Trang</td>
-                                    <td class="text-left">Daily challenges on wednesday</td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                                            <i class="now-ui-icons ui-2_settings-90"></i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" checked>
-                                                <span class="form-check-sign"></span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td class="text-left">Đức</td>
-                                    <td class="text-left">Daily challenges on thursday</td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                                            <i class="now-ui-icons ui-2_settings-90"></i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" checked>
-                                                <span class="form-check-sign"></span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td class="text-left">Việt</td>
-                                    <td class="text-left">Daily challenges on friday</td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                                            <i class="now-ui-icons ui-2_settings-90"></i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" checked>
-                                                <span class="form-check-sign"></span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td class="text-left">Tuấn</td>
-                                    <td class="text-left">Daily challenges on saturday</td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                                            <i class="now-ui-icons ui-2_settings-90"></i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox">
-                                                <span class="form-check-sign"></span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td class="text-left">Dũng</td>
-                                    <td class="text-left">Topic in this week</td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                                            <i class="now-ui-icons ui-2_settings-90"></i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="table-full-width table-responsive" id="table-task">
+                        @*Task*@
                     </div>
                 </div>
                 <div class="card-footer ">
                     <hr>
-                    <div class="stats">
-                        <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
-                    </div>
+                    <a href="#" class="stats" id="update-table-task">
+                        <i class="now-ui-icons loader_refresh spin"></i> Cập nhật lại!
+                    </a>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-category">Punishment statistics</h5>
-                    <h4 class="card-title"> Logs</h4>
+                    <h5 class="card-category">Thống kê phạt</h5>
+                    <h4 class="card-title" id="title-table-log"></h4>
+                    <p style="font-size: 15px;" class="category text-transform" id="text-notifi">Bạn chưa cập nhật điểm phạt của ngày hôm qua</p>
+                    <div style="text-align: left;" class="col-md-12">
+                        <button style="font-size: 15px; padding: 8px 8px !important;" type="button" class="btn btn-primary" id="btn-update-punish">Cập nhật điểm phạt</button>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead class=" text-primary">
-                            <th>
-                                Name
-                            </th>
-                            <th>
-                                Last date
-                            </th>
-                            <th>
-                                Count
-                            </th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        Tuấn Nguyễn
-                                    </td>
-                                    <td>
-                                        @DateTime.Now.ToString("dd/MM/yyyy")
-                                    </td>
-                                    <td>
-                                        1
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Tuấn Nguyễn
-                                    </td>
-                                    <td>
-                                        @DateTime.Now.ToString("dd/MM/yyyy")
-                                    </td>
-                                    <td>
-                                        1
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Tuấn Nguyễn
-                                    </td>
-                                    <td>
-                                        @DateTime.Now.ToString("dd/MM/yyyy")
-                                    </td>
-                                    <td>
-                                        1
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Tuấn Nguyễn
-                                    </td>
-                                    <td>
-                                        @DateTime.Now.ToString("dd/MM/yyyy")
-                                    </td>
-                                    <td>
-                                        1
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Tuấn Nguyễn
-                                    </td>
-                                    <td>
-                                        @DateTime.Now.ToString("dd/MM/yyyy")
-                                    </td>
-                                    <td>
-                                        1
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="table-responsive" id="table-log">
+                        @*Log*@
                     </div>
+                </div>
+                <div class="card-footer ">
+                    <hr>
+                    <a href="#" class="stats" id="update-table-log">
+                        <i class="now-ui-icons loader_refresh spin"></i> Cập nhật lại!
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+
+
+<div class="modal fade" id="modal-update-punish" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Cập nhật điểm phạt ngày @DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy")</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card  card-tasks">
+                            <div class="card-header ">
+                                <h5 class="card-category">Chọn những người bị phạt và click "Cập nhật"</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <p>Developing...</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" id="btn-action-update">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts{
-    <script>$(document).ready(function () {
+    <script>
+        $(document).ready(function () {
             // Javascript method's body can be found in assets/js/demos.js
             demo.initDashboardPageCharts();
-
+            var selected = [];
+            $('#checkboxes input:checked').each(function () {
+                selected.push($(this).attr('name'));
+            });
+            $("#checkboxes").children("input:checked").map(function () {
+                return this.name;
+            });
+            function getDataTask() {
+                $.ajax({
+                    url: '/Home/GetDataTask',
+                    type: "GET",
+                    data: null,
+                    success: function (data) {
+                        $('#table-task').html(data);
+                    },
+                    error: function () {
+                        alert('error!');
+                    }
+                });
+            };
+            function getDataPunish() {
+                $.ajax({
+                    url: '/Home/GetDataPunish',
+                    type: "GET",
+                    data: null,
+                    success: function (data) {
+                        $('#table-log').html(data);
+                    },
+                    error: function () {
+                        alert('error!');
+                    }
+                });
+            };
+            function getSumDataPunish() {
+                $.ajax({
+                    url: '/Home/GetSumDataPunish',
+                    type: "GET",
+                    data: null,
+                    success: function (data) {
+                        if (data.sum >= 0)
+                            $('#title-table-log').html('Nhật ký (Tổng điểm : ' + data.sum + ')');
+                        else
+                            $('#title-table-log').html('Nhật ký (Tải tổng điểm lỗi)');
+                    },
+                    error: function () {
+                        alert('error!');
+                    }
+                });
+            };
+            getDataTask();
+            getDataPunish();
+            getSumDataPunish();
+            $('#update-table-task').click(function () {
+                getDataTask();
+            });
+            $('#update-table-log').click(function () {
+                getDataPunish();
+                getSumDataPunish();
+            });
+            $('#btn-update-punish').click(function () {
+                $('#modal-update-punish').modal('show');
+            });
+            $('#btn-action-update').click(function () {
+                $('#modal-update-punish').modal('hide');
+            });
         });</script>
 }

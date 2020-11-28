@@ -24,5 +24,13 @@
         public const string ADMIN = "ADMIN";
         public const string USER = "USER";
         public const string NEW = "NEW";
+
+        // user spin
+        public const int FREE_SPIN = 0;
+        public const int SPINED = 1;
+
+        // user status
+        public const int REJECT_CHALLENGES = 0;
+        public const int APPLIED_CHALLENGES = 1;
     }
 }

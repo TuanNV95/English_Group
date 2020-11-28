@@ -1,0 +1,17 @@
+﻿@model Manager.Models.spin_role
+
+<h5 class="title">Nhiệm vụ tạo thử thách và sự kiện cho tuần kế tiếp</h5>
+@if (Model.is_admin)
+{
+    <p style="font-size: 15px;" class="category text-transform" id="text-notifi">@(Model.is_spiner ? "Bạn là những người có quyền quay cho tuần tới." : Model.full_name + " và bạn là những người có quyền quay cho tuần tới.")</p>
+}
+else
+{
+    <p style="font-size: 15px;" class="category text-transform" id="text-notifi">@(Model.is_spiner ? "Bạn và Quản trị viên là những người có quyền quay cho tuần tới." : Model.full_name + " và Quản trị viên là những người có quyền quay cho tuần tới.")</p>
+}
+@if (Model.is_spiner || Model.is_admin)
+{
+    <div style="text-align: left;" class="col-md-12">
+        <button style="font-size: 15px; padding: 8px 8px !important;" type="button" class="btn btn-primary" id="btn-spin">Lựa chọn ngẫu nhiên</button>
+    </div>
+}

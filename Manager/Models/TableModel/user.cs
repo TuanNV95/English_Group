@@ -18,5 +18,7 @@
         public string facebook { get; set; }
         public string instagram { get; set; }
         public string twitter { get; set; }
+        public int? spined { get; set; }
+        public int? is_spiner { get; set; }
     }
 }

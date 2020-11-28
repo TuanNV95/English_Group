@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using SqlKata.Execution;
 using System;
+using System.Linq;
 
 namespace Manager.Controllers
 {
@@ -39,7 +40,10 @@ namespace Manager.Controllers
                         {
                             id_facebook = id,
                             full_name = name,
-                            actived = 0
+                            actived = 0,
+                            status = 1,
+                            spined = 0,
+                            is_spiner = 0
                         });
                 }
                 var user_selected = query_data.Clone().FirstOrDefault<user>();

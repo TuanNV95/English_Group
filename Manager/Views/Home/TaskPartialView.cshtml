@@ -1,0 +1,38 @@
+﻿@model List<Manager.Models.TableModel.user_task_response>
+
+<table class="table">
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr style="background-color: @(item.date.GetValueOrDefault().ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") ? "#dbf1de" : "#fff")">
+            <td id="hide-mobile">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        @if (item.status == 1)
+                        {
+                            <input class="form-check-input" type="checkbox" checked disabled>
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" disabled>
+                        }
+                        <span class="form-check-sign"></span>
+                    </label>
+                </div>
+            </td>
+            <td>
+                @if (item.id_facebook == "1")
+                {
+                    <img style="width: 40px; height: 40px;margin-top: 10px;" class="avatar border-gray" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                }
+                else
+                {
+                    <img style="width: 40px; height: 40px;margin-top: 10px;" class="avatar border-gray" src="//graph.facebook.com/@item.id_facebook/picture?type=large&width=100&height=100" alt="...">
+                }
+            </td>
+            <td class="text-left">@item.full_name</td>
+            <td class="text-left">@item.task</td>
+        </tr>
+        }
+    </tbody>
+</table>

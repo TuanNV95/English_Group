@@ -1,0 +1,13 @@
+﻿@model List<Manager.Models.TableModel.top_punish>
+    <div class="col-md-4 top-icon top2-3">
+        <img class="avatar-top border-gray" src="~/assets/img/bac.png" alt="...">
+        <h4 style="font-weight: bold">@(Model.Count() >= 2 ? (Model[1].full_name + " (" + Model[1].punish_sum + ")") : "Chưa có")</h4>
+    </div>
+    <div class="col-md-4 top-icon">
+        <img class="avatar-top border-gray" src="~/assets/img/vang.png" alt="...">
+        <h4 style="font-weight: bold">@(Model.Count() >= 1 ? Model[0].full_name + " (" + Model[0].punish_sum + ")" : "Chưa có")</h4>
+    </div>
+    <div class="col-md-4 top-icon top2-3">
+        <img class="avatar-top border-gray" src="~/assets/img/dong.png" alt="...">
+        <h4 style="font-weight: bold">@(Model.Count() >= 3 ? Model[2].full_name + " (" + Model[2].punish_sum + ")" : "Chưa có")</h4>
+    </div>

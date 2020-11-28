@@ -1,0 +1,35 @@
+﻿@model List<Manager.Models.TableModel.user_punishs_response>
+
+<table class="table">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="">
+                <td class="text-center col-avatar">
+                    @if (item.id_facebook == "1")
+                    {
+                        <img class="avatar border-gray" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                    }
+                    else
+                    {
+                        <img class="avatar border-gray" src="//graph.facebook.com/@item.id_facebook/picture?type=large&width=100&height=100" alt="...">
+                    }
+                </td>
+                <td style="font-size: 20px;" class="text-left">@item.full_name</td>
+                <td class="text-left">@item.sum</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<style>
+    .col-avatar {
+        width: 60px !important;
+    }
+
+        .col-avatar img {
+            width: 50px;
+            height: 50px;
+        }
+</style>

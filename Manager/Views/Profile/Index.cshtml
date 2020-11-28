@@ -4,8 +4,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h3 id="_id" hidden>@Model.id</h3>
-<div class="panel-header panel-header-sm">
+<div class="panel-header">
+    <div class="header text-center">
+        <h2 class="title">Hi @ViewBag.NameFacebook,</h2>
+        <p class="category text-transform">
+            Tại đây bạn có thể cập nhật thông tin cá nhân của mình.<br/>
+            Hãy cập nhật đầy đủ nhé! Thanks
+        </p>
+    </div>
 </div>
+
+
+
 <div class="content">
     <div class="row">
         <div class="col-md-4">
@@ -44,27 +54,27 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="title">Edit Profile</h5>
+                    <h5 class="title">Chỉnh sửa hồ sơ cá nhân</h5>
                 </div>
                 <div class="card-body">
                     <form>
                         <div class="row">
                             <div class="col-md-5 pr-1">
                                 <div class="form-group">
-                                    <label>Full name (disabled)</label>
+                                    <label>Tên đầy đủ (không thể chỉnh sửa)</label>
                                     <input type="text" class="form-control" disabled="" placeholder="your name" value="@ViewBag.NameFacebook">
                                 </div>
                             </div>
                             <div class="col-md-3 px-1">
                                 <div class="form-group">
-                                    <label>Username</label>
-                                    <input id="username" type="text" class="form-control" placeholder="Username" value="">
+                                    <label>Mật khẩu</label>
+                                    <input id="username" type="text" class="form-control" placeholder="Mật khẩu của bạn" value="">
                                 </div>
                             </div>
                             <div class="col-md-4 pl-1">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Password</label>
-                                    <input id="password" type="password" class="form-control" placeholder="Password">
+                                    <label for="exampleInputEmail1">Xác nhận mật khẩu</label>
+                                    <input id="password" type="password" class="form-control" placeholder="Xác nhận">
                                 </div>
                             </div>
                         </div>
@@ -79,19 +89,19 @@
                         <div class="row">
                             <div class="col-md-4 pr-1">
                                 <div class="form-group">
-                                    <label>Facebook link</label>
+                                    <label>Liên kết Facebook</label>
                                     <input id="facebook" type="text" class="form-control" placeholder="your facebook link" value="@Model.facebook">
                                 </div>
                             </div>
                             <div class="col-md-4 px-1">
                                 <div class="form-group">
-                                    <label>Twitter link</label>
+                                    <label>Liên kết Twitter</label>
                                     <input id="twitter" type="text" class="form-control" placeholder="your twitter link" value="@Model.twitter">
                                 </div>
                             </div>
                             <div class="col-md-4 pl-1">
                                 <div class="form-group">
-                                    <label>Instagram link</label>
+                                    <label>Liên kết Instagram</label>
                                     <input id="instagram" type="text" class="form-control" placeholder="your instagram link" value="@Model.instagram">
                                 </div>
                             </div>
@@ -99,14 +109,14 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>About Me</label>
+                                    <label>Giới thiệu bản thân</label>
                                     <textarea id="details" spellcheck="false" rows="4" cols="80" class="form-control" placeholder="Write something...">@Model.details</textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div style="text-align: right;" class="col-md-12">
-                                <button type="button" class="btn btn-primary" id="btn-update-user">Update</button>
+                                <button type="button" class="btn btn-primary" id="btn-update-user">Cập nhật</button>
                             </div>
                         </div>
                     </form>

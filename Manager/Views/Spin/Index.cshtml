@@ -4,102 +4,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="panel-header panel-header-sm">
+<div class="panel-header">
+    <div class="header text-center">
+        <h2 class="title">Người được chọn</h2>
+        <p class="category text-transform">
+            Tất cả mọi người đều sẽ được chọn ngẫu nhiên để đảm nhiệm thử thách cũng như sự kiện!<br />
+            Khi chưa chọn hết lượt sẽ không xoay vòng
+        </p>
+    </div>
 </div>
 <div class="content">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    <h5 class="title">Responsible for this week's challenges and events</h5>
-                    <p style="font-size: 15px;" class="category">You decide next week. <a href="#" data-toggle="modal" data-target="#exampleModalCenter">click here</a></p>
+                <div class="card-header" id="spin-header">
+                    
                 </div>
                 <div class="card-body all-icons">
-                    <div class="row">
-                        @*<div class="font-icon-list col-lg-2">
-                            <div class="font-icon-detail">
-                                <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/2064356367034224/picture?type=large&width=300&height=300" alt="IMG">
-                                <p>Monday</p>
-                            </div>
-                        </div>
-                        <div class="font-icon-list col-lg-2">
-                            <div class="font-icon-detail">
-                                <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/2064356367034224/picture?type=large&width=300&height=300" alt="IMG">
-                                <p>Tuesday</p>
-                            </div>
-                        </div>
-                        <div class="font-icon-list col-lg-2">
-                            <div class="font-icon-detail">
-                                <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/2064356367034224/picture?type=large&width=300&height=300" alt="IMG">
-                                <p>Wednesday</p>
-                            </div>
-                        </div>
-                        <div class="font-icon-list col-lg-2">
-                            <div class="font-icon-detail">
-                                <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/2064356367034224/picture?type=large&width=300&height=300" alt="IMG">
-                                <p>Thursday</p>
-                            </div>
-                        </div>
-                        <div class="font-icon-list col-lg-2">
-                            <div class="font-icon-detail">
-                                <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/2064356367034224/picture?type=large&width=300&height=300" alt="IMG">
-                                <p>Friday</p>
-                            </div>
-                        </div>
-                        <div class="font-icon-list col-lg-2">
-                            <div class="font-icon-detail">
-                                <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/2064356367034224/picture?type=large&width=300&height=300" alt="IMG">
-                                <p>Saturday</p>
-                            </div>
-                        </div>
-                        <div class="font-icon-list col-lg-2">
-                            <div class="font-icon-detail">
-                                <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/2064356367034224/picture?type=large&width=300&height=300" alt="IMG">
-                                <p>Sunday</p>
-                            </div>
-                        </div>*@
-                        <div class="font-icon-list col-lg-2">
-                            <div class="font-icon-detail">
-                                <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
-                                <p>Monday</p>
-                            </div>
-                        </div>
-                        <div class="font-icon-list col-lg-2">
-                            <div class="font-icon-detail">
-                                <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
-                                <p>Tuesday</p>
-                            </div>
-                        </div>
-                        <div class="font-icon-list col-lg-2">
-                            <div class="font-icon-detail">
-                                <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
-                                <p>Wednesday</p>
-                            </div>
-                        </div>
-                        <div class="font-icon-list col-lg-2">
-                            <div class="font-icon-detail">
-                                <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
-                                <p>Thursday</p>
-                            </div>
-                        </div>
-                        <div class="font-icon-list col-lg-2">
-                            <div class="font-icon-detail">
-                                <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
-                                <p>Friday</p>
-                            </div>
-                        </div>
-                        <div class="font-icon-list col-lg-2">
-                            <div class="font-icon-detail">
-                                <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
-                                <p>Saturday</p>
-                            </div>
-                        </div>
-                        <div class="font-icon-list col-lg-2">
-                            <div class="font-icon-detail">
-                                <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
-                                <p>Sunday</p>
-                            </div>
-                        </div>
+                    <div class="row" id="user-spin-next">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title">Nhiệm vụ tạo thử thách và sự kiện đang hoạt động</h5>
+                </div>
+                <div class="card-body all-icons">
+                    <div class="row" id="user-spin">
+
                     </div>
                 </div>
             </div>
@@ -107,11 +42,11 @@
     </div>
 </div>
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="modal-spin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Random rotation</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Đang lựa chọn ngẫu nhiên...</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -126,12 +61,91 @@
 
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Spin</button>
-            </div>
+            @*<div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" id="spining">Quay</button>
+            </div>*@
         </div>
     </div>
 </div>
 
 
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            function getDataUserSpined() {
+                $.ajax({
+                    url: '/Spin/GetDataUserSpined',
+                    type: "GET",
+                    data: null,
+                    success: function (data) {
+                        $('#user-spin').html(data);
+                    },
+                    error: function () {
+                        alert('error!');
+                    }
+                });
+            };
+
+            function spinClick() {
+                $('#modal-spin').modal('show');
+                $.ajax({
+                    url: '/Spin/Spining',
+                    type: "GET",
+                    data: null,
+                    success: function (data) {
+                        if (data.errorCode == 200) {
+                            getSpinHeader();
+                            getDataUserSpined();
+                            getDataUserNextWeek();
+                            $('#modal-spin').modal('hide');
+                        }
+                        else {
+                            alert(data.message);
+                            getSpinHeader();
+                            $('#modal-spin').modal('hide');
+                        }
+                    },
+                    error: function () {
+                        alert('error!');
+                        getSpinHeader();
+                        $('#modal-spin').modal('hide');
+                    }
+                });
+            };
+
+            function getSpinHeader() {
+                $.ajax({
+                    url: '/Spin/GetSpinHeader',
+                    type: "GET",
+                    data: null,
+                    success: function (data) {
+                        $('#spin-header').html(data);
+                        $('#btn-spin').click(function () {
+                            spinClick();
+                        });
+                    },
+                    error: function () {
+                        alert('error!');
+                    }
+                });
+            };
+            function getDataUserNextWeek() {
+                $.ajax({
+                    url: '/Spin/GetDataUserNextWeek',
+                    type: "GET",
+                    data: null,
+                    success: function (data) {
+                        $('#user-spin-next').html(data);
+                    },
+                    error: function () {
+                        alert('error!');
+                    }
+                });
+            };
+            getDataUserSpined();
+            getDataUserNextWeek();
+            getSpinHeader();
+        });
+    </script>
+}
