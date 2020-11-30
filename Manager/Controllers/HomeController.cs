@@ -1,6 +1,7 @@
 ﻿using Manager.Common;
 using Manager.Connection;
 using Manager.Helper;
+using Manager.Models;
 using Manager.Models.TableModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -162,6 +163,102 @@ namespace Manager.Controllers
             catch (Exception ex)
             {
                 return Json(new { ErrorCode = 400, Message = ex.Message, sum = -1 });
+            }
+        }
+
+        [HttpGet]
+        public PartialViewResult GetRolePunish()
+        {
+            try
+            {
+                var data = new spin_role();
+                var today = DateTime.Parse(DateTime.Now.ToString("MM/dd/yyyy"));
+                var check_data = _queryBuilder.Query(ConstantsDatabase.TABLE_USER_TASKS + " as ut")
+                    .Join(ConstantsDatabase.TABLE_USERS + " as u", "u.id", "ut.user_id")
+                    .Where("ut.date", ">=", today.AddDays(-1))
+                    .Where("ut.date", "<", today)
+                    .Select("u.*")
+                    .FirstOrDefault<user>();
+                var id_fb = HttpContext.Session.GetString(Constants.ID_FACEBOOK);
+                var check_admin = _queryBuilder.Query(ConstantsDatabase.TABLE_USERS)
+                    .Where(ConstantsDatabase.USERS_ID_FACEBOOK, id_fb)
+                    .FirstOrDefault<user>();
+                data.is_admin = check_admin.actived == 100 ? true : false;
+                if (check_data.id == check_admin.id)
+                {
+                    data.is_spiner = true;
+                    data.full_name = check_data.full_name;
+                }
+                else
+                {
+                    data.is_spiner = false;
+                    data.full_name = check_data.full_name;
+                }
+                return PartialView("RolePunishPartialView", data);
+            }
+            catch
+            {
+                return PartialView("RolePunishPartialView", new spin_role());
+            }
+        }
+
+        [HttpGet]
+        public PartialViewResult GetAllUserActive()
+        {
+            try
+            {
+                var today = DateTime.Parse(DateTime.Now.ToString("MM/dd/yyyy"));
+                var _sup_query = _queryBuilder.Query(ConstantsDatabase.TABLE_USER_PUNISHS)
+                    .Where(ConstantsDatabase.USER_PUNISHS_DATE_CREATED, ">=", today.AddDays(-1))
+                    .Where(ConstantsDatabase.USER_PUNISHS_DATE_CREATED, "<", today);
+
+                var data = _queryBuilder.Query(ConstantsDatabase.TABLE_USERS + " as u")
+                    .LeftJoin(_sup_query.As("up"), j => j.On("up.user_id", "u.id"))
+                    .Where("u.status", 1)
+                    .Select("u.*", "up.id as punish_id")
+                    .Get<user_punish>().ToList();
+                return PartialView("AllUserActivePartialView", data);
+            }
+            catch (Exception ex)
+            {
+                return PartialView("AllUserActivePartialView", new List<user_punish>());
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdatePunish(List<int> lst_id)
+        {
+            try
+            {
+                var stt = -1;
+                var today = DateTime.Parse(DateTime.Now.ToString("MM/dd/yyyy"));
+                stt = _queryBuilder.Query(ConstantsDatabase.TABLE_USER_PUNISHS)
+                .Where(ConstantsDatabase.USER_PUNISHS_DATE_CREATED, ">=", today.AddDays(-1))
+                .Where(ConstantsDatabase.USER_PUNISHS_DATE_CREATED, "<", today)
+                .Delete();
+                foreach (var item in lst_id)
+                {
+                    var id_fb = HttpContext.Session.GetString(Constants.ID_FACEBOOK);
+                    var this_user = _queryBuilder.Query(ConstantsDatabase.TABLE_USERS)
+                    .Where(ConstantsDatabase.USERS_ID_FACEBOOK, id_fb)
+                    .FirstOrDefault<user>();
+                    stt = _queryBuilder.Query(ConstantsDatabase.TABLE_USER_PUNISHS)
+                        .InsertGetId<int>(new
+                        {
+                            user_id = item,
+                            punish_contents = "Bài tập của " + this_user.full_name + " ngày " + today.AddDays(-1).ToString("MM/dd/yyyy"),
+                            date_created = today.AddDays(-1),
+                            user_created = this_user.id,
+                            status = 0
+                        });
+                }
+                if (stt > 0)
+                    return Json(new { ErrorCode = 200, Message = "success!" });
+                return Json(new { ErrorCode = 400, Message = "error!" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { ErrorCode = 400, Message = ex.Message });
             }
         }
     }

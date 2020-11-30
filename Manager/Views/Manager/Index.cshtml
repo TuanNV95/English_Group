@@ -64,6 +64,51 @@
     </div>
 </div>
 
+
+
+<div class="modal fade" id="update-user-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title">Cập nhật thông tin người dùng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 px-1">
+                        <div class="form-group">
+                            <label>Facebook Id</label>
+                            <input id="update-id-fb" type="text" class="form-control" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 px-1">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input id="update-mail" type="email" class="form-control" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 pl-1">
+                        <div class="form-group">
+                            <label>Tham gia hoạt động (1: tham gia, 0: không tham gia)</label>
+                            <input id="update-action" type="text" class="form-control" value="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btn-update-user">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts
 {
     <script>
@@ -93,6 +138,10 @@
                             $('#content-delete').html("Active user?");
                             $('#delete-user-modal').modal('show');
                         });
+                        $('.update-user').click(function () {
+                            id_selected = $(this).closest('tr').attr('id');
+                            $('#update-user-modal').modal('show');
+                        });
                     },
                     error: function () {
                         alert('error');
@@ -108,8 +157,7 @@
                 if (type == 'delete') {
                     url = '/Manager/DeleteUser';
                 }
-                else if (type == 'active')
-                {
+                else if (type == 'active') {
                     url = '/Manager/ActiveUser';
                 }
                 $.ajax({
@@ -123,6 +171,31 @@
                     },
                     error: function () {
                         $('#delete-user-modal').modal('hide');
+                        alert('error!');
+                    }
+                });
+            });
+
+            $('#btn-update-user').click(function () {
+                var id_fb = $('#update-id-fb').val();
+                var update_mail = $('#update-mail').val();
+                var update_action = $('#update-action').val();
+                $.ajax({
+                    url: '/Manager/UpdateUser',
+                    type: "POST",
+                    dataType: 'json',
+                    data: {
+                        id: id_selected,
+                        id_fb: id_fb,
+                        update_mail: update_mail,
+                        update_action: update_action
+                    },
+                    success: function (data) {
+                        $('#update-user-modal').modal('hide');
+                        loadUser();
+                    },
+                    error: function () {
+                        $('#update-user-modal').modal('hide');
                         alert('error!');
                     }
                 });

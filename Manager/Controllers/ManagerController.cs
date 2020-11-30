@@ -87,5 +87,28 @@ namespace Manager.Controllers
                 return Json(new { ErrorCode = 400, Message = ex.Message });
             }
         }
+
+        [HttpPost]
+        public ActionResult UpdateUser(int id, string id_fb, string update_mail, int update_action)
+        {
+            try
+            {
+                var stt_update = _queryBuilder.Query(ConstantsDatabase.TABLE_USERS)
+                       .Where(ConstantsDatabase.COL_ID, id)
+                       .Update(new
+                       {
+                           id_facebook = id_fb,
+                           email = update_mail,
+                           status = update_action
+                       });
+                if (stt_update > 0)
+                    return Json(new { ErrorCode = 200, Message = "sucsess!" });
+                return Json(new { ErrorCode = 400, Message = "error!" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { ErrorCode = 400, Message = ex.Message });
+            }
+        }
     }
 }

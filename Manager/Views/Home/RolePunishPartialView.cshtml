@@ -1,0 +1,29 @@
+﻿@model Manager.Models.spin_role
+@if (Model.is_admin)
+{
+    @if (!Model.is_spiner)
+    {
+        <p style="font-size: 15px;" class="category text-transform" id="text-notifi">Bạn và @Model.full_name có thể cập nhật điểm phạt của ngày hôm qua</p>
+    }
+    else
+    {
+        <p style="font-size: 15px;" class="category text-transform" id="text-notifi">Bạn có thể cập nhật điểm phạt của ngày hôm qua</p>
+    }
+}
+else
+{
+    @if (!Model.is_spiner)
+    {
+        <p style="font-size: 15px;" class="category text-transform" id="text-notifi">@Model.full_name và Quản trị viên có thể cập nhật điểm phạt của ngày hôm qua</p>
+    }
+    else
+    {
+        <p style="font-size: 15px;" class="category text-transform" id="text-notifi">Bạn và Quản trị viên có thể cập nhật điểm phạt của ngày hôm qua</p>
+    }
+}
+@if (Model.is_spiner || Model.is_admin)
+{
+    <div style="text-align: left;" class="col-md-12">
+        <button style="font-size: 15px; padding: 8px 8px !important;" type="button" class="btn btn-primary" id="btn-update-punish">Cập nhật điểm phạt</button>
+    </div>
+}

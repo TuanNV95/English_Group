@@ -6,12 +6,13 @@
                 Selected
             </td>
             <td class="text-left">Facebook Id</td>
-            <td class="text-left">Username</td>
-            <td class="text-left">Full name</td>
-            <td class="text-left">Email address</td>
-            <td class="text-left">Phone number</td>
-            <td class="text-left">Role</td>
-            <td class="text-left">Status</td>
+            @*<td class="text-left">Tên đăng nhập</td>*@
+            <td class="text-left">Họ tên</td>
+            <td class="text-left">Email</td>
+            <td class="text-left">Tham gia</td>
+            @*<td class="text-left">Số điện thoại</td>*@
+            <td class="text-left">Quyền</td>
+            <td class="text-left">Trạng thái</td>
             <td class="td-actions text-right"></td>
         </tr>
         @foreach (var item in Model)
@@ -26,10 +27,18 @@
                     </div>
                 </td>
                 <td class="text-left">@(item.id_facebook ?? "")</td>
-                <td class="text-left">@(item.user_name ?? "")</td>
+                @*<td class="text-left">@(item.user_name ?? "")</td>*@
                 <td class="text-left">@(item.full_name ?? "")</td>
                 <td class="text-left">@(item.email ?? "")</td>
-                <td class="text-left">@(item.phone ?? "")</td>
+                @if (item.status == 0)
+                {
+                    <td class="text-left">Không</td>
+                }
+                else
+                {
+                    <td class="text-left">Có</td>
+                }
+                @*<td class="text-left">@(item.phone ?? "")</td>*@
                 <td class="text-left"><p>@(item.actived == 100 ? "Admin": (item.actived == 0 ? "New" : "User"))</p></td>
                 @if (item.actived == 0)
                 {
@@ -44,10 +53,13 @@
                 <td class="td-actions text-right">
                     @if (item.actived == 0)
                     {
-                        <button type="button"class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral active-user">
+                        <button type="button" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral active-user">
                             <i class="now-ui-icons ui-2_settings-90"></i>
                         </button>
                     }
+                    <button type="button" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral update-user">
+                        <i style="color: #2a5687;" class="fas fa-edit"></i>
+                    </button>
                     <button type="button" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral delete-user">
                         <i class="now-ui-icons ui-1_simple-remove"></i>
                     </button>

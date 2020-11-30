@@ -21,4 +21,9 @@
         public int? spined { get; set; }
         public int? is_spiner { get; set; }
     }
+
+    public class user_punish : user
+    {
+        public int? punish_id { get; set; }
+    }
 }
