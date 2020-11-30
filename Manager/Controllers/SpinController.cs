@@ -86,7 +86,7 @@ namespace Manager.Controllers
         {
             try
             {
-                Thread.Sleep(10000);
+                Thread.Sleep(5000);
                 var id_fb = HttpContext.Session.GetString(Constants.ID_FACEBOOK).ToString();
                 var week = Utilities.GetAllDayInWeek();
                 var max_date_task = DateTime.Parse(_queryBuilder.Query(ConstantsDatabase.TABLE_USER_TASKS)

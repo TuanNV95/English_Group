@@ -44,11 +44,17 @@ namespace Manager.Controllers
                 case "home":
                     HttpContext.Session.SetString(Constants.MENU_ACTIVE, Constants.HOME);
                     break;
+                case "rule":
+                    HttpContext.Session.SetString(Constants.MENU_ACTIVE, Constants.RULE);
+                    break;
                 case "spin":
                     HttpContext.Session.SetString(Constants.MENU_ACTIVE, Constants.SPIN);
                     break;
                 case "punish":
                     HttpContext.Session.SetString(Constants.MENU_ACTIVE, Constants.PUNISH);
+                    break;
+                case "fund":
+                    HttpContext.Session.SetString(Constants.MENU_ACTIVE, Constants.FUND);
                     break;
                 case "notification":
                     HttpContext.Session.SetString(Constants.MENU_ACTIVE, Constants.NOTIFICATION);

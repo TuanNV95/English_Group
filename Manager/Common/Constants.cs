@@ -13,7 +13,9 @@
 
         public const string HOME = "DASHBOARD";
         public const string SPIN = "CHALLENGES - SPIN";
+        public const string RULE = "GROUP RULE";
         public const string PUNISH = "PUNISH LOG";
+        public const string FUND = "FUND MONEY";
         public const string NOTIFICATION = "NOTIFICATIONS";
         public const string PROFILE = "PROFILE";
         public const string FRIEND = "FRIENDS";

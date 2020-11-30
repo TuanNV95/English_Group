@@ -45,6 +45,12 @@
                             <p>Trang chủ</p>
                         </a>
                     </li>
+                    <li class=" @(ViewBag.Session == "GROUP RULE" ? "active" : "")" id="rule">
+                        <a @*href="/spin"*@>
+                            <i class="now-ui-icons objects_key-25"></i>
+                            <p>Nội quy nhóm</p>
+                        </a>
+                    </li>
                     <li class=" @(ViewBag.Session == "CHALLENGES - SPIN" ? "active" : "")" id="spin">
                         <a @*href="/spin"*@>
                             <i class="now-ui-icons education_atom"></i>
@@ -55,6 +61,12 @@
                         <a @*href="/punish"*@>
                             <i class="now-ui-icons location_map-big"></i>
                             <p>Danh sách phạt</p>
+                        </a>
+                    </li>
+                    <li class=" @(ViewBag.Session == "FUND MONEY" ? "active" : "")" id="fund">
+                        <a @*href="/punish"*@>
+                            <i class="now-ui-icons business_money-coins"></i>
+                            <p>Tiền quỹ</p>
                         </a>
                     </li>
                     <li class=" @(ViewBag.Session == "NOTIFICATIONS" ? "active" : "")" id="notification">
@@ -77,19 +89,19 @@
                     </li>
                     <li class=" @(ViewBag.Session == "SETTINGS" ? "active" : "")" id="setting">
                         <a @*href="/setting"*@>
-                            <i class="now-ui-icons design_bullet-list-67"></i>
+                            <i class="now-ui-icons ui-1_settings-gear-63"></i>
                             <p>Cài đặt</p>
                         </a>
                     </li>
                     @if (ViewBag.Role == "ADMIN")
-                     {
+                    {
                         <li class=" @(ViewBag.Session == "MANAGER - ADMIN" ? "active" : "")" id="manager">
                             <a @*href="/setting"*@>
                                 <i class="now-ui-icons design_bullet-list-67"></i>
                                 <p>Quản trị (Admin)</p>
                             </a>
                         </li>
-                     };
+                    };
                 </ul>
             </div>
         </div>

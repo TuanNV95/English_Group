@@ -131,5 +131,38 @@ namespace Manager.Controllers
             return Json(new { ErrorCode = 400, Message = "error!" });
         }
 
+        [HttpPost]
+        public ActionResult LoginByEmail(string email, string pass)
+        {
+            try
+            {
+                var hash_pass = Utilities.Sha256Hash(pass);
+                var user = _queryBuilder.Query(ConstantsDatabase.TABLE_USERS)
+                    .Where(new
+                    {
+                        email = email,
+                        password = hash_pass
+                    })
+                    .FirstOrDefault<user>();
+                if (!(user is null))
+                {
+                    HttpContext.Session.SetString(Constants.ID_FACEBOOK, user.id_facebook);
+                    HttpContext.Session.SetString(Constants.NAME_FACEBOOK, user.full_name);
+                    HttpContext.Session.SetString(Constants.MENU_ACTIVE, Constants.HOME);
+                    if (user.actived == 100)
+                        HttpContext.Session.SetString(Constants.ROLE, Constants.ADMIN);
+                    else if (user.actived == 0)
+                    {
+                        HttpContext.Session.SetString(Constants.ROLE, Constants.NEW);
+                    }
+                    return Json(new { ErrorCode = 200, Message = "success!" });
+                }
+                return Json(new { ErrorCode = 400, Message = "error!" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { ErrorCode = 400, Message = ex.Message });
+            }
+        }
     }
 }

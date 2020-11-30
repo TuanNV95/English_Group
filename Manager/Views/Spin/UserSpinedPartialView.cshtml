@@ -7,173 +7,295 @@
     var fri = Model.FirstOrDefault(c => c.task == "FRIDAY");
     var sat = Model.FirstOrDefault(c => c.task == "SATURDAY");
     var sun = Model.FirstOrDefault(c => c.task == "SUNDAY");
+    string GetDayOfWeek(string task)
+    {
+        string response = "";
+        switch (task)
+        {
+            case "MONDAY":
+                response = "Thử thách thứ hai";
+                break;
+            case "TUESDAY":
+                response = "Thử thách thứ ba";
+                break;
+            case "WEDNESDAY":
+                response = "Thử thách thứ tư";
+                break;
+            case "THURSDAY":
+                response = "Thử thách thứ năm";
+                break;
+            case "FRIDAY":
+                response = "Thử thách thứ sáu";
+                break;
+            case "SATURDAY":
+                response = "Thử thách thứ bảy";
+                break;
+            case "SUNDAY":
+                response = "Tạo chủ đề tuần";
+                break;
+        }
+        return response;
+    }
 }
-
-<div class="font-icon-list col-lg-2">
-    <div class="font-icon-detail">
-        @if (mon == null)
-        {
-            <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
-            <p>Đang cập nhật...</p>
-            <p>(Monday)</p>
-        }
-        else
-        {
-
-            @if (mon.id_facebook == "1")
+<div>
+    @*<div class="font-icon-list col-lg-2">
+        <div class="font-icon-detail">
+            @if (mon == null)
             {
-                <img style="border-radius: 0.1875rem; width:100%;" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
+                <p>Đang cập nhật...</p>
+                <p>(Monday)</p>
             }
             else
             {
-                <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/@mon.id_facebook/picture?type=large&width=1000&height=1000" alt="...">
-            }
-            <p>@mon.full_name</p>
-            <p>(Monday)</p>
-        }
-    </div>
-</div>
-<div class="font-icon-list col-lg-2">
-    <div class="font-icon-detail">
-        @if (tue == null)
-        {
-            <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
-            <p>Đang cập nhật...</p>
-            <p>(Tuesday)</p>
-        }
-        else
-        {
 
-            @if (tue.id_facebook == "1")
+                @if (mon.id_facebook == "1")
+                {
+                    <img style="border-radius: 0.1875rem; width:100%;" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                }
+                else
+                {
+                    <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/@mon.id_facebook/picture?type=large&width=1000&height=1000" alt="...">
+                }
+                <p>@mon.full_name</p>
+                <p>(Monday)</p>
+            }
+        </div>
+    </div>
+    <div class="font-icon-list col-lg-2">
+        <div class="font-icon-detail">
+            @if (tue == null)
             {
-                <img style="border-radius: 0.1875rem; width:100%;" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
+                <p>Đang cập nhật...</p>
+                <p>(Tuesday)</p>
             }
             else
             {
-                <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/@tue.id_facebook/picture?type=large&width=1000&height=1000" alt="...">
-            }
-            <p>@tue.full_name</p>
-            <p>(Tuesday)</p>
-        }
-    </div>
-</div>
-<div class="font-icon-list col-lg-2">
-    <div class="font-icon-detail">
-        @if (wed == null)
-        {
-            <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
-            <p>Đang cập nhật...</p>
-            <p>(Wednesday)</p>
-        }
-        else
-        {
 
-            @if (wed.id_facebook == "1")
+                @if (tue.id_facebook == "1")
+                {
+                    <img style="border-radius: 0.1875rem; width:100%;" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                }
+                else
+                {
+                    <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/@tue.id_facebook/picture?type=large&width=1000&height=1000" alt="...">
+                }
+                <p>@tue.full_name</p>
+                <p>(Tuesday)</p>
+            }
+        </div>
+    </div>
+    <div class="font-icon-list col-lg-2">
+        <div class="font-icon-detail">
+            @if (wed == null)
             {
-                <img style="border-radius: 0.1875rem; width:100%;" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
+                <p>Đang cập nhật...</p>
+                <p>(Wednesday)</p>
             }
             else
             {
-                <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/@wed.id_facebook/picture?type=large&width=1000&height=1000" alt="...">
-            }
-            <p>@wed.full_name</p>
-            <p>(Wednesday)</p>
-        }
-    </div>
-</div>
-<div class="font-icon-list col-lg-2">
-    <div class="font-icon-detail">
-        @if (thur == null)
-        {
-            <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
-            <p>Đang cập nhật...</p>
-            <p>(Thursday)</p>
-        }
-        else
-        {
 
-            @if (thur.id_facebook == "1")
+                @if (wed.id_facebook == "1")
+                {
+                    <img style="border-radius: 0.1875rem; width:100%;" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                }
+                else
+                {
+                    <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/@wed.id_facebook/picture?type=large&width=1000&height=1000" alt="...">
+                }
+                <p>@wed.full_name</p>
+                <p>(Wednesday)</p>
+            }
+        </div>
+    </div>
+    <div class="font-icon-list col-lg-2">
+        <div class="font-icon-detail">
+            @if (thur == null)
             {
-                <img style="border-radius: 0.1875rem; width:100%;" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
+                <p>Đang cập nhật...</p>
+                <p>(Thursday)</p>
             }
             else
             {
-                <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/@thur.id_facebook/picture?type=large&width=1000&height=1000" alt="...">
-            }
-            <p>@thur.full_name</p>
-            <p>(Thursday)</p>
-        }
-    </div>
-</div>
-<div class="font-icon-list col-lg-2">
-    <div class="font-icon-detail">
-        @if (fri == null)
-        {
-            <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
-            <p>Đang cập nhật...</p>
-            <p>(Friday)</p>
-        }
-        else
-        {
 
-            @if (fri.id_facebook == "1")
+                @if (thur.id_facebook == "1")
+                {
+                    <img style="border-radius: 0.1875rem; width:100%;" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                }
+                else
+                {
+                    <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/@thur.id_facebook/picture?type=large&width=1000&height=1000" alt="...">
+                }
+                <p>@thur.full_name</p>
+                <p>(Thursday)</p>
+            }
+        </div>
+    </div>
+    <div class="font-icon-list col-lg-2">
+        <div class="font-icon-detail">
+            @if (fri == null)
             {
-                <img style="border-radius: 0.1875rem; width:100%;" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
+                <p>Đang cập nhật...</p>
+                <p>(Friday)</p>
             }
             else
             {
-                <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/@fri.id_facebook/picture?type=large&width=1000&height=1000" alt="...">
-            }
-            <p>@fri.full_name</p>
-            <p>(Friday)</p>
-        }
-    </div>
-</div>
-<div class="font-icon-list col-lg-2">
-    <div class="font-icon-detail">
-        @if (sat == null)
-        {
-            <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
-            <p>Đang cập nhật...</p>
-            <p>(Saturday)</p>
-        }
-        else
-        {
 
-            @if (sat.id_facebook == "1")
+                @if (fri.id_facebook == "1")
+                {
+                    <img style="border-radius: 0.1875rem; width:100%;" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                }
+                else
+                {
+                    <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/@fri.id_facebook/picture?type=large&width=1000&height=1000" alt="...">
+                }
+                <p>@fri.full_name</p>
+                <p>(Friday)</p>
+            }
+        </div>
+    </div>
+    <div class="font-icon-list col-lg-2">
+        <div class="font-icon-detail">
+            @if (sat == null)
             {
-                <img style="border-radius: 0.1875rem; width:100%;" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
+                <p>Đang cập nhật...</p>
+                <p>(Saturday)</p>
             }
             else
             {
-                <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/@sat.id_facebook/picture?type=large&width=1000&height=1000" alt="...">
-            }
-            <p>@sat.full_name</p>
-            <p>(Saturday)</p>
-        }
-    </div>
-</div>
-<div class="font-icon-list col-lg-2">
-    <div class="font-icon-detail">
-        @if (sun == null)
-        {
-            <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
-            <p>Đang cập nhật...</p>
-            <p>(Sunday)</p>
-        }
-        else
-        {
 
-            @if (sun.id_facebook == "1")
+                @if (sat.id_facebook == "1")
+                {
+                    <img style="border-radius: 0.1875rem; width:100%;" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                }
+                else
+                {
+                    <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/@sat.id_facebook/picture?type=large&width=1000&height=1000" alt="...">
+                }
+                <p>@sat.full_name</p>
+                <p>(Saturday)</p>
+            }
+        </div>
+    </div>
+    <div class="font-icon-list col-lg-2">
+        <div class="font-icon-detail">
+            @if (sun == null)
             {
-                <img style="border-radius: 0.1875rem; width:100%;" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                <img style="border-radius: 0.1875rem; width:100%; opacity:30%;" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
+                <p>Đang cập nhật...</p>
+                <p>(Sunday)</p>
             }
             else
             {
-                <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/@sun.id_facebook/picture?type=large&width=1000&height=1000" alt="...">
+
+                @if (sun.id_facebook == "1")
+                {
+                    <img style="border-radius: 0.1875rem; width:100%;" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                }
+                else
+                {
+                    <img style="border-radius: 0.1875rem; width:100%;" src="//graph.facebook.com/@sun.id_facebook/picture?type=large&width=1000&height=1000" alt="...">
+                }
+                <p>@sun.full_name</p>
+                <p>(Sunday)</p>
             }
-            <p>@sun.full_name</p>
-            <p>(Sunday)</p>
-        }
-    </div>
+        </div>
+    </div>*@
 </div>
+
+
+
+<table class="table">
+    <tbody>
+        @if (Model is null || Model.Count() == 0)
+        {
+            <tr>
+                <td style="width: 80px;">
+                    <img style="width: 60px; height: 60px;margin-top: 10px;" class="avatar border-gray" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
+                </td>
+                <td class="text-left">Đang cập nhật...</td>
+                <td class="text-left">Thử thách thứ hai</td>
+            </tr>
+            <tr>
+                <td style="width: 80px;">
+                    <img style="width: 60px; height: 60px;margin-top: 10px;" class="avatar border-gray" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
+                </td>
+                <td class="text-left">Đang cập nhật...</td>
+                <td class="text-left">Thử thách thứ ba</td>
+            </tr>
+            <tr>
+                <td style="width: 80px;">
+                    <img style="width: 60px; height: 60px;margin-top: 10px;" class="avatar border-gray" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
+                </td>
+                <td class="text-left">Đang cập nhật...</td>
+                <td class="text-left">Thử thách thứ tư</td>
+            </tr>
+            <tr>
+                <td style="width: 80px;">
+                    <img style="width: 60px; height: 60px;margin-top: 10px;" class="avatar border-gray" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
+                </td>
+                <td class="text-left">Đang cập nhật...</td>
+                <td class="text-left">Thử thách thứ năm</td>
+            </tr>
+            <tr>
+                <td style="width: 80px;">
+                    <img style="width: 60px; height: 60px;margin-top: 10px;" class="avatar border-gray" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
+                </td>
+                <td class="text-left">Đang cập nhật...</td>
+                <td class="text-left">Thử thách thứ sáu</td>
+            </tr>
+            <tr>
+                <td style="width: 80px;">
+                    <img style="width: 60px; height: 60px;margin-top: 10px;" class="avatar border-gray" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
+                </td>
+                <td class="text-left">Đang cập nhật...</td>
+                <td class="text-left">Thử thách thứ bảy</td>
+            </tr>
+            <tr>
+                <td style="width: 80px;">
+                    <img style="width: 60px; height: 60px;margin-top: 10px;" class="avatar border-gray" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
+                </td>
+                <td class="text-left">Đang cập nhật...</td>
+                <td class="text-left">Tạo chủ đề tuần</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                if (item == null)
+                {
+                    <tr style="background-color: @(item.date.GetValueOrDefault().ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") ? "#dbf1de" : "#fff")">
+                        <td style="width: 80px;">
+                            <img style="width: 60px; height: 60px;margin-top: 10px;" class="avatar border-gray" src="https://yellowflicker.vn/Content/img/common/loader.gif" alt="IMG">
+                        </td>
+                        <td class="text-left">"Đang cập nhật..."</td>
+                        <td class="text-left">@GetDayOfWeek(item.task)</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr style="background-color: @(item.date.GetValueOrDefault().ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy") ? "#dbf1de" : "#fff")">
+                        <td style="width: 80px;">
+                            @if (item.id_facebook == "1")
+                            {
+                                <img style="width: 60px; height: 60px;margin-top: 10px;" class="avatar border-gray" src="https://thxd.nuce.edu.vn/wp-content/uploads/2020/06/JaZBMzV14fzRI4vBWG8jymplSUGSGgimkqtJakOV.jpeg" alt="...">
+                            }
+                            else
+                            {
+                                <img style="width: 60px; height: 60px;margin-top: 10px;" class="avatar border-gray" src="//graph.facebook.com/@item.id_facebook/picture?type=large&width=100&height=100" alt="...">
+                            }
+                        </td>
+                        <td class="text-left">@item.full_name</td>
+                        <td class="text-left">@GetDayOfWeek(item.task)</td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>
